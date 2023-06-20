@@ -117,7 +117,7 @@ export default {
       if(this.tag === '') {
         return;
       }
-      this.tags.push(this.tag);
+      this.tags.push(this.tag.toLowerCase());
       this.tag = '';
     },
     remove(tag) {

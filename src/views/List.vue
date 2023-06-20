@@ -76,7 +76,7 @@ export default {
         if(this.tags.length === 0) {
           return true
         }
-        return task.tags.includes(...this.tags)
+        return task.tags.some(tag => this.tags.includes(tag));
       }).filter(task => {
         if(this.filter === null) {
           return true
@@ -88,7 +88,7 @@ export default {
       if(this.tag === '') {
         return;
       }
-      this.tags.push(this.tag);
+      this.tags.push(this.tag.toLowerCase());
       this.tag = '';
     },
   },
