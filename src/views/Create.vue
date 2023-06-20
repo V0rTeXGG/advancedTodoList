@@ -4,7 +4,7 @@
     <div class="input-wrapper">
       <input
           v-model="title"
-          @focus="this.error = false"
+          @focus="this.isTitleEmpty = true"
           id="title" type="text"
           class="input-wrapper__input">
       <label
@@ -12,7 +12,7 @@
           for="title"
           class="input-wrapper__label">
         Title</label>
-      <p v-if="error" class="input-wrapper__error">Please fill in this field</p>
+      <p v-if="!isTitleEmpty" class="input-wrapper__error">Please fill in this field</p>
     </div>
     <div class="input-wrapper">
       <input
@@ -60,9 +60,11 @@
     <div class="input-wrapper">
       <input
           v-model="date"
+          @focus="this.isDateEmpty = true"
           type="date"
           id="Test_DatetimeLocal"
           class="input-wrapper__input input-wrapper__date">
+      <p v-if="!isDateEmpty" class="input-wrapper__error">Please fill in this field</p>
     </div>
       <button type="submit" class="create-form__btn"><span class="create-form__btn__text">Create task</span></button>
   </form>
@@ -82,14 +84,16 @@ export default {
       text: '',
       date: '',
       tags: [],
-      error: false,
+      isTitleEmpty: true,
+      isDateEmpty: true,
       addTask: false,
     }
   },
   methods: {
     submitHandler() {
-      if(this.title === '') {
-        return this.error = true;
+      if(this.title === '' || this.date === '') {
+        this.title === '' ? this.isTitleEmpty = false : this.isTitleEmpty;
+        this.date === '' ? this.isDateEmpty = false : this.isDateEmpty;
       } else {
         const task = {
           title: this.title,

@@ -75,6 +75,28 @@
   }
 }
 
+.wrapper-pages {
+  @include displayFlex;
+  justify-content: start;
+  gap: 5px;
+
+  .wrapper-pages__page {
+    padding: 5px 8px;
+    border: 1px solid $colorBlack;
+    border-radius: 5px;
+    font-size: 24px;
+    transition: all .1s linear;
+
+    &:hover {
+      background-color: #dbdbdb;
+    }
+
+  }
+  .wrapper-pages__page.active {
+    background-color: #bebebe;
+  }
+}
+
 .list-message-empty {
   text-align: center;
   font-size: 25px;

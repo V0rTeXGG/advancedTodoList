@@ -23,7 +23,7 @@
 }
 
 .header-nav {
-  width: 300px;
+  width: 180px;
 
   .header-nav__list {
     @include displayFlex;
@@ -46,6 +46,34 @@
     }
     .header-nav__list__link:hover:before {
       width: 100%;
+    }
+  }
+}
+
+.header-nav__profile {
+  position: relative;
+  width: 30px;
+  height: 25px;
+
+  .header-nav__profile__line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $colorBlack;
+
+    &:nth-child(1) {
+      top: 0;
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
     }
   }
 }

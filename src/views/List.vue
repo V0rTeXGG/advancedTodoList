@@ -46,13 +46,16 @@
       <span class="list-table__titles__title">status</span>
       <span class="list-table__titles__title">Open</span>
     </div>
-    <div v-for="(task, id) in filterTasks" :key="task.id" class="list-table__item">
+    <div v-for="(task, id) in paginatedTasks" :key="task.id" class="list-table__item">
       <span class="list-table__item__title">{{id+1}}</span>
       <span class="list-table__item__title">{{task.title}}</span>
       <span class="list-table__item__title description">{{task.description}}</span>
       <span class="list-table__item__title">{{new Date(task.date).toLocaleDateString()}}</span>
       <span class="list-table__item__title">{{task.status}}</span>
       <router-link :to="'/task/' + task.id" tag="button" class="list-table__button">Open</router-link>
+    </div>
+    <div class="wrapper-pages">
+      <button v-for="pageNumber in totalPage" :key="pageNumber" @click="currentPage = pageNumber" class="wrapper-pages__page" :class="{active: pageNumber === currentPage}">{{pageNumber}}</button>
     </div>
   </div>
   <p v-else="" class="list-message-empty">There are no tasks</p>
@@ -65,6 +68,8 @@ export default {
       filter: '',
       tag: '',
       tags: [],
+      currentPage: 1,
+      tasksPerPage: 10,
     }
   },
   computed: {
@@ -84,6 +89,16 @@ export default {
           return task.status === this.filter
       });
     },
+    totalPage() {
+      return Math.ceil(this.tasks.length / 10)
+    },
+    paginatedTasks() {
+      const startIndex = (this.currentPage - 1) * this.tasksPerPage;
+      const endIndex = startIndex + this.tasksPerPage;
+      return this.filterTasks.slice(startIndex, endIndex);
+    }
+  },
+  methods: {
     addTag() {
       if(this.tag === '') {
         return;
@@ -92,8 +107,6 @@ export default {
       this.tag = '';
       localStorage.setItem('tags', JSON.stringify(this.tags));
     },
-  },
-  methods: {
     remove(tag) {
       this.tags = this.tags.filter(item => item !== tag);
       localStorage.setItem('tags', JSON.stringify(this.tags));
@@ -112,7 +125,7 @@ export default {
     if (savedTags) {
       this.tags = JSON.parse(savedTags);
     }
-  }
+  },
 }
 </script>
 

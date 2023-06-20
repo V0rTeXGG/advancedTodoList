@@ -22,6 +22,11 @@
           </router-link>
         </ul>
       </nav>
+      <button class="header-nav__profile">
+        <span  class="header-nav__profile__line"></span>
+        <span  class="header-nav__profile__line"></span>
+        <span  class="header-nav__profile__line"></span>
+      </button>
     </div>
   </header>
 </template>

@@ -13,6 +13,8 @@
       <div class="input-wrapper">
       <textarea
           v-model="text"
+          :readonly="this.task.status == 'completed'"
+          unselectable="on"
           id="text" class="input-wrapper__input input-wrapper__text"
           maxlength="2048"></textarea>
       <label
@@ -29,6 +31,7 @@
     <div class="input-wrapper">
       <input
           v-model="date"
+          :readonly="this.task.status == 'completed'"
           type="date"
           id="Test_DatetimeLocal"
           class="input-wrapper__input input-wrapper__date">
@@ -38,11 +41,12 @@
         <span class="">Complete task</span>
       </button>
     </span>
-    <button v-if="this.task.status == 'active'" type="submit" class="create-form__btn"><span class="create-form__btn__text">Change task</span></button>
-
+    <button v-if="this.task.status == 'active'" type="submit" class="create-form__btn">
+      <span class="create-form__btn__text">Change task</span>
+    </button>
     </form>
   </template>
-  <span v-else="">Task not found</span>
+  <span v-else>Task not found</span>
 </template>
 
 <script>
