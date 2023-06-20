@@ -2,13 +2,13 @@
 <h1 class="title">List tasks</h1>
   <aside class="wrapper-filters">
     <h3 class="wrapper-filters-title">Filters</h3>
-  <select v-model="filter" class="wrapper-filters__filter">
+  <select v-model="filter" @change="handleFilter" class="wrapper-filters__filter">
     <option value="starter" selected disabled class="wrapper-filters__filter__option">Starter </option>
     <option value="active" class="wrapper-filters__filter__option">Active</option>
     <option value="completed" class="wrapper-filters__filter__option">Completed</option>
     <option value="outdated" class="wrapper-filters__filter__option">Outdated</option>
   </select>
-  <button @click="this.filter = null" class="wrapper-filters__reset">Reset filter</button>
+  <button @click="this.filter = ''; handleFilter()" class="wrapper-filters__reset">Reset filter</button>
   <div @keyup.enter="addTag" class="input-wrapper">
       <input
           v-model="tag"
@@ -62,7 +62,7 @@
 export default {
   data() {
     return {
-      filter: null,
+      filter: '',
       tag: '',
       tags: [],
     }
@@ -78,7 +78,7 @@ export default {
         }
         return task.tags.some(tag => this.tags.includes(tag));
       }).filter(task => {
-        if(this.filter === null) {
+        if(this.filter === '') {
           return true
         }
           return task.status === this.filter
@@ -90,13 +90,29 @@ export default {
       }
       this.tags.push(this.tag.toLowerCase());
       this.tag = '';
+      localStorage.setItem('tags', JSON.stringify(this.tags));
     },
   },
   methods: {
     remove(tag) {
       this.tags = this.tags.filter(item => item !== tag);
+      localStorage.setItem('tags', JSON.stringify(this.tags));
+    },
+    handleFilter() {
+      let selectedValue = this.filter;
+      localStorage.setItem('selectedTag', selectedValue);
     },
   },
+  mounted() {
+    const selectedValue = localStorage.getItem('selectedTag');
+    const savedTags = localStorage.getItem('tags');
+    if (selectedValue) {
+      this.filter = selectedValue;
+    }
+    if (savedTags) {
+      this.tags = JSON.parse(savedTags);
+    }
+  }
 }
 </script>
 

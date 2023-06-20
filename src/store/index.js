@@ -7,7 +7,7 @@ export default createStore({
         task.status = 'outdated'
       }
       return task
-    })
+    }),
   },
   getters: {
     tasks: s => s.tasks,
@@ -36,7 +36,7 @@ export default createStore({
       const idx = state.tasks.findIndex(t => t.id === id)
       state.tasks[idx].status = 'completed'
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
-    }
+    },
   },
   actions: {
     createTask({commit}, task) {
@@ -47,7 +47,7 @@ export default createStore({
     },
     completeTask({commit}, id) {
       commit('completeTask', id)
-    }
+    },
   },
   modules: {
   }
