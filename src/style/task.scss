@@ -1,0 +1,65 @@
+@import "varibles";
+@import "main";
+@import "create";
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.tags-wrapper {
+  @include displayFlex;
+  justify-content: start;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid $colorGrey;
+
+  .input-wrapper__tags {
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #c0c0c0;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+.input-wrapper {
+  max-width: 900px;
+
+  .input-wrapper__text {
+    max-width: 900px;
+    min-width: 900px;
+  }
+
+  .input-wrapper__date {
+    width: 900px;
+  }
+}
+
+.input-wrapper__status {
+  @include displayFlex;
+  padding: 15px 10px;
+  border-bottom: 4px solid $colorGrey;
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  .input-wrapper__btn-status {
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid $colorGrey;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.create-form__btn {
+  max-width: 170px;
+}
+
+
+

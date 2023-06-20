@@ -1,0 +1,168 @@
+@import "mixin";
+@import "varibles";
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.input-wrapper {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+
+  .input-wrapper__input {
+    width: 700px;
+    padding: 15px 10px;
+    height: 60px;
+    border-bottom: 4px solid $colorGrey;
+    font-size: 24px;
+  }
+
+  .input-wrapper__text {
+    min-height: 100px;
+    max-width: 700px;
+    min-width: 700px;
+  }
+
+  .input-wrapper__error {
+    margin-top: 5px;
+    color: $colorRed
+  }
+
+  .input-wrapper__date {
+    float: left;
+  }
+
+  .tags-wrapper {
+    @include displayFlex;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+
+    .input-wrapper__tags {
+      @include displayFlex;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background-color: #c0c0c0;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      .tags-wrapper__tags__delete {
+        position: relative;
+        width: 15px;
+        height: 15px;
+        margin-left: 5px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 40%;
+          width: 100%;
+          height: 2px;
+          transform: rotate(45deg);
+          background-color: $colorBlack;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 40%;
+          width: 100%;
+          height: 2px;
+          transform: rotate(-45deg);
+          background-color: $colorBlack;
+        }
+      }
+    }
+  }
+
+  .input-wrapper__label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: $colorGrey;
+    transition: all .15s ease-in-out;
+  }
+
+  .input-wrapper__label.active {
+    left: 0;
+    top: 0;
+    font-size: 15px;
+  }
+
+  .input-wrapper__add {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 2px solid $colorGrey;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .text-counter {
+    margin-top: 10px;
+    display: block;
+  }
+  .text-counter.error {
+      color: $colorRed
+  }
+}
+
+.create-form__btn {
+  @include button;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateX(-100%);
+    border-radius: 10px;
+    background: $colorBlack;
+    transition: all .25s ease-in-out;
+  }
+
+  .create-form__btn__text {
+    z-index: 2;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color .25s ease-in-out;
+  }
+}
+.create-form__btn:hover .create-form__btn__text  {
+  color: $colorWhite;
+}
+
+.create-form__btn:hover:before {
+  transform: translateX(0);
+}
+
+.create-massage {
+  z-index: 10;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 25px;
+  border-radius: 20px;
+  background-color: #c0c0c0;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
