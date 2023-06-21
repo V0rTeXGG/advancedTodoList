@@ -2,13 +2,21 @@
 <h1 class="title">List tasks</h1>
   <aside class="wrapper-filters">
     <h3 class="wrapper-filters-title">Filters</h3>
-  <select v-model="filter" @change="handleFilter" class="wrapper-filters__filter">
+  <select v-model="filter" @change="handleFilterStatus" class="wrapper-filters__filter">
     <option value="starter" selected disabled class="wrapper-filters__filter__option">Starter </option>
     <option value="active" class="wrapper-filters__filter__option">Active</option>
     <option value="completed" class="wrapper-filters__filter__option">Completed</option>
     <option value="outdated" class="wrapper-filters__filter__option">Outdated</option>
   </select>
-  <button @click="this.filter = ''; handleFilter()" class="wrapper-filters__reset">Reset filter</button>
+  <button @click="this.filter = ''; handleFilterStatus()" class="wrapper-filters__reset">Reset filter status</button>
+  <div class="input-wrapper">
+    <input
+    v-model="date"
+    @change="handlerFilterDate"
+    type="date"
+    class="wrapper-filters__date input-wrapper__input">
+  </div>
+  <button @click="this.date = '';  handlerFilterDate()" class="wrapper-filters__reset">Reset filter date</button>
   <div @keyup.enter="addTag" class="input-wrapper">
       <input
           v-model="tag"
@@ -67,6 +75,7 @@ export default {
     return {
       filter: '',
       tag: '',
+      date: '',
       tags: [],
       currentPage: 1,
       tasksPerPage: 10,
@@ -87,10 +96,15 @@ export default {
           return true
         }
           return task.status === this.filter
+      }).filter(task => {
+        if(this.date === '') {
+          return true
+        }
+        return task.date === this.date
       });
     },
     totalPage() {
-      return Math.ceil(this.tasks.length / 10)
+      return Math.ceil(this.filterTasks.length / 10)
     },
     paginatedTasks() {
       const startIndex = (this.currentPage - 1) * this.tasksPerPage;
@@ -111,10 +125,14 @@ export default {
       this.tags = this.tags.filter(item => item !== tag);
       localStorage.setItem('tags', JSON.stringify(this.tags));
     },
-    handleFilter() {
+    handleFilterStatus() {
       let selectedValue = this.filter;
       localStorage.setItem('selectedTag', selectedValue);
     },
+    handlerFilterDate() {
+      let selectedValueDate = this.date;
+      localStorage.setItem('selectedDate', selectedValueDate)
+    }
   },
   mounted() {
     const selectedValue = localStorage.getItem('selectedTag');

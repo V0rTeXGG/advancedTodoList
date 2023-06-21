@@ -11,11 +11,11 @@
 
 .input-wrapper {
   position: relative;
-  max-width: 700px;
+  width: 100%;
   margin: auto;
 
   .input-wrapper__input {
-    width: 700px;
+    width: 100%;
     padding: 15px 10px;
     height: 60px;
     border-bottom: 4px solid $colorGrey;
@@ -24,8 +24,8 @@
 
   .input-wrapper__text {
     min-height: 100px;
-    max-width: 700px;
-    min-width: 700px;
+    max-width: 100%;
+    min-width: 100%;
   }
 
   .input-wrapper__error {
@@ -161,6 +161,13 @@
   text-transform: uppercase;
 }
 
+@media(max-width: 768px) {
+
+  .create-form {
+    padding: 0 10px;
+  }
+
+}
 
 
 

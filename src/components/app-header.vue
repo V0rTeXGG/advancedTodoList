@@ -22,11 +22,29 @@
           </router-link>
         </ul>
       </nav>
-      <button class="header-nav__profile">
-        <span  class="header-nav__profile__line"></span>
-        <span  class="header-nav__profile__line"></span>
-        <span  class="header-nav__profile__line"></span>
+      <button @click="openProfile" :class="{active: isProfile}" class="header-btn">
+        <span  class="header-btn__line"></span>
+        <span  class="header-btn__line"></span>
+        <span  class="header-btn__line"></span>
       </button>
+    </div>
+    <div :class="{active: isProfile}" class="header-profile">
+        <div class="header-profile__block">
+          <span class="header-profile__title">Total tasks:</span>
+          <span class="header-profile__value">{{tasks.length}}</span>
+        </div>
+        <div class="header-profile__block">
+          <span class="header-profile__title">Active task:</span>
+          <span class="header-profile__value">{{activeTasks}} / {{tasks.length}}</span>
+        </div>
+        <div class="header-profile__block">
+          <span class="header-profile__title">Completed task:</span>
+          <span class="header-profile__value">{{completedTask}} / {{tasks.length}}</span>
+        </div>
+        <div class="header-profile__block">
+          <span class="header-profile__title">Outdated task:</span>
+          <span class="header-profile__value">{{outdatedTask}} / {{tasks.length}}</span>
+        </div>
     </div>
   </header>
 </template>
@@ -34,6 +52,32 @@
 <script>
 export default {
   name: 'app-header',
+
+  data() {
+    return {
+      isProfile: false,
+    }
+  },
+  methods: {
+    openProfile() {
+      this.isProfile = !this.isProfile;
+      document.documentElement.style.overflow = 'hidden';
+    }
+  },
+  computed: {
+    tasks() {
+      return this.$store.getters.tasks
+    },
+    activeTasks() {
+      return this.tasks.filter(task => task.status === 'active').length
+    },
+    completedTask() {
+      return this.tasks.filter(task => task.status === 'completed').length
+    },
+    outdatedTask() {
+      return this.tasks.filter(task => task.status === 'outdated').length
+    }
+  }
 }
 </script>
 

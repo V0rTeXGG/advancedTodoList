@@ -23,10 +23,10 @@
 }
 
 .header-nav {
-  width: 180px;
 
   .header-nav__list {
     @include displayFlex;
+    width: 180px;
 
     .header-nav__list__link {
       position: relative;
@@ -50,12 +50,12 @@
   }
 }
 
-.header-nav__profile {
+.header-btn {
   position: relative;
   width: 30px;
   height: 25px;
 
-  .header-nav__profile__line {
+  .header-btn__line {
     position: absolute;
     left: 0;
     width: 100%;
@@ -64,16 +64,104 @@
 
     &:nth-child(1) {
       top: 0;
-      transform: translateY(-50%);
+      transition: top .15s .2s, transform .2s;
     }
 
     &:nth-child(2) {
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 0;
+      transition: bottom .15s .2s, transform .2s;
     }
 
     &:nth-child(3) {
-      bottom: 0;
+      transform: translateY(-30%);
+      transition: opacity .05s .15s;
     }
+  }
+}
+
+.header-btn.active {
+
+  .header-btn__line {
+
+    &:nth-child(1) {
+      top: 44%;
+      transform: rotate(45deg);
+      transition: top .15s, transform .2s .15s;
+    }
+
+    &:nth-child(2) {
+      bottom: 44%;
+      transform: rotate(-45deg);
+      transition: bottom .15s, transform .2s .15s;
+    }
+
+    &:nth-child(3) {
+      opacity: 0;
+    }
+
+  }
+
+}
+
+//header profile start
+
+.header-profile {
+  @include displayFlex;
+  flex-direction: column;
+  z-index: 999;
+  position: absolute;
+  top: 66px;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  border: 1px solid $colorBlack;
+  background-color: $colorWhite;
+  font-size: 24px;
+  transition: all .3s ease-in-out;
+
+  .header-profile__block {
+    @include displayFlex;
+    width: 300px;
+
+    .header-profile__title {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.header-profile.active {
+  height: 400px;
+  padding: 50px 0;
+}
+//header profile end
+
+@media(max-width: 1440px) {
+  .header-wrapper {
+    padding: 15px 5px;
+  }
+}
+
+@media(max-width: 450px) {
+
+  .header-logo {
+    font-size: 25px;
+  }
+
+  .header-wrapper {
+    padding: 10px 5px;
+
+    .header-nav__list {
+      width: 150px;
+    }
+
+  }
+  .header-nav__list__link {
+    font-size: 22px !important;
+  }
+
+  .header-profile {
+    top: 50px;
   }
 }
