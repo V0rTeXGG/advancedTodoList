@@ -65,12 +65,17 @@
     <div class="wrapper-pages">
       <button v-for="pageNumber in totalPage" :key="pageNumber" @click="currentPage = pageNumber" class="wrapper-pages__page" :class="{active: pageNumber === currentPage}">{{pageNumber}}</button>
     </div>
+    <h3 class="list-wrapper-title-daily">Daily task:</h3>
+    <app-slider></app-slider>
   </div>
   <p v-else="" class="list-message-empty">There are no tasks</p>
 </template>
 
 <script>
+import AppSlider from "@/components/ui/app-slider.vue";
+
 export default {
+  components: {AppSlider},
   data() {
     return {
       filter: '',
@@ -110,7 +115,7 @@ export default {
       const startIndex = (this.currentPage - 1) * this.tasksPerPage;
       const endIndex = startIndex + this.tasksPerPage;
       return this.filterTasks.slice(startIndex, endIndex);
-    }
+    },
   },
   methods: {
     addTag() {

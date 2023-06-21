@@ -61,7 +61,7 @@ export default {
   methods: {
     openProfile() {
       this.isProfile = !this.isProfile;
-      document.documentElement.style.overflow = 'hidden';
+      // document.documentElement.style.overflow = 'hidden';
     }
   },
   computed: {

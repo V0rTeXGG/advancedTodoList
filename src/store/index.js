@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     tasks: JSON.parse(localStorage.getItem('tasks') || '[]').map(task => {
-      if(new Date(task.date) < new Date()) {
+      if(new Date(task.date).getDate() < new Date().getDate()) {
         task.status = 'outdated'
       }
       return task

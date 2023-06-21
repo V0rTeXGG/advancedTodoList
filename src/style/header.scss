@@ -3,7 +3,8 @@
 
 
 .header {
-  position: absolute;
+  z-index: 999;
+  position: fixed;
   left: 0;
   right: 0;
   height: 50px;
@@ -15,6 +16,7 @@
   max-width: 1440px;
   margin: auto;
   padding: 15px 0;
+  background-color: $colorWhite;
 }
 
 .header-logo {

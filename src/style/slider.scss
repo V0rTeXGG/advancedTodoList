@@ -1,0 +1,48 @@
+@import "varibles";
+@import "mixin";
+
+.slide-wrapper {
+  max-width: 280px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid $colorBlack;
+
+  .slider-wrapper__title {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .slide-wrapper__tags {
+    @include displayFlex;
+    justify-content: start;
+    gap: 10px;
+    margin-bottom: 25px;
+
+    .slide-wrapper-tags__tag {
+      padding: 2px 10px;
+      border-radius: 10px;
+      background-color: #c0c0c0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .slider-wrapper__empty-tags {
+    margin-bottom: 15px;
+    color: $colorRed;
+  }
+
+  .slide-wrapper__btn {
+    padding: 5px 10px;
+    border: 3px solid #959595;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.swiper {
+    height: 200px !important;
+}
