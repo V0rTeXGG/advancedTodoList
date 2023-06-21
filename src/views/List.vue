@@ -63,7 +63,7 @@
       <router-link :to="'/task/' + task.id" tag="button" class="list-table__button">Open</router-link>
     </div>
     <div class="wrapper-pages">
-      <button v-for="pageNumber in totalPage" :key="pageNumber" @click="currentPage = pageNumber" class="wrapper-pages__page" :class="{active: pageNumber === currentPage}">{{pageNumber}}</button>
+      <button v-for="pageNumber in totalPage" :key="pageNumber" @click="currentPage = pageNumber; handlerPage()" class="wrapper-pages__page" :class="{active: pageNumber === Number(currentPage)}">{{pageNumber}}</button>
     </div>
     <h3 class="list-wrapper-title-daily">Daily task:</h3>
     <app-slider></app-slider>
@@ -115,6 +115,7 @@ export default {
       const startIndex = (this.currentPage - 1) * this.tasksPerPage;
       const endIndex = startIndex + this.tasksPerPage;
       return this.filterTasks.slice(startIndex, endIndex);
+      localStorage.setItem('paginatedTasks', JSON.stringify(this.filterTasks));
     },
   },
   methods: {
@@ -137,11 +138,17 @@ export default {
     handlerFilterDate() {
       let selectedValueDate = this.date;
       localStorage.setItem('selectedDate', selectedValueDate)
+    },
+    handlerPage() {
+      let currentPage = this.currentPage;
+      localStorage.setItem('currentPage', currentPage)
     }
   },
   mounted() {
-    const selectedValue = localStorage.getItem('selectedTag');
-    const savedTags = localStorage.getItem('tags');
+    let currentPage = localStorage.getItem('currentPage');
+    this.currentPage = currentPage;
+    let selectedValue = localStorage.getItem('selectedTag');
+    let savedTags = localStorage.getItem('tags');
     if (selectedValue) {
       this.filter = selectedValue;
     }

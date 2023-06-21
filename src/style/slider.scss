@@ -3,6 +3,7 @@
 
 .slide-wrapper {
   max-width: 280px;
+  height: 168px;
   padding: 20px;
   border-radius: 15px;
   border: 1px solid $colorBlack;
@@ -30,7 +31,7 @@
   }
 
   .slider-wrapper__empty-tags {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     color: $colorRed;
   }
 
