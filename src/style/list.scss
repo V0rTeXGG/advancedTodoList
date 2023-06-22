@@ -236,6 +236,30 @@
 }
 // filter end
 
+@media(max-width: 1728px) {
+
+  .wrapper-filters {
+    position: initial;
+    max-width: 900px;
+    margin: auto;
+    margin-bottom: 70px;
+  }
+
+  .wrapper-filters__filter[data-v-20863650] {
+    width: 100%;
+  }
+
+  .input-wrapper {
+    width: 100%;
+    max-width: 100%;
+
+    .input-wrapper__input {
+      width: 100%;
+    }
+  }
+
+}
+
 @media(max-width: 768px) {
 
   .list-table__titles__title {
@@ -275,24 +299,5 @@
         padding: 5px 5px !important;
         font-size: 14px;
       }
-  }
-
-  .wrapper-filters {
-    position: initial;
-    max-width: 100%;
-    margin-bottom: 70px;
-  }
-
-  .wrapper-filters__filter[data-v-20863650] {
-    width: 100%;
-  }
-
-  .input-wrapper {
-    width: 100%;
-    max-width: 100%;
-
-    .input-wrapper__input {
-      width: 100%;
-    }
   }
 }
