@@ -1,6 +1,5 @@
 <template>
   <swiper
-    :slidesPerView="3"
     :spaceBetween="30"
     :pagination="{
       clickable: true,

@@ -66,7 +66,7 @@
       <button v-for="pageNumber in totalPage" :key="pageNumber" @click="currentPage = pageNumber; handlerPage()" class="wrapper-pages__page" :class="{active: pageNumber === Number(currentPage)}">{{pageNumber}}</button>
     </div>
     <h3 class="list-wrapper-title-daily">Daily task:</h3>
-    <app-slider></app-slider>
+    <app-slider :breakpoints="{ 320:{slidesPerView: 1}, 450:{ slidesPerView:2 }, 650:{ slidesPerView:3, } }"></app-slider>
   </div>
   <p v-else="" class="list-message-empty">There are no tasks</p>
 </template>
@@ -144,7 +144,7 @@ export default {
       localStorage.setItem('currentPage', currentPage)
     }
   },
-  mounted() {
+  beforeMount() {
     let currentPage = localStorage.getItem('currentPage');
     this.currentPage = currentPage;
     let selectedValue = localStorage.getItem('selectedTag');
@@ -155,7 +155,7 @@ export default {
     if (savedTags) {
       this.tags = JSON.parse(savedTags);
     }
-  },
+  }
 }
 </script>
 
